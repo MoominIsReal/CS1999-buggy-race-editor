@@ -59,6 +59,15 @@ table td, table th {
   border: 1px solid #999;
   padding: 0.5rem;
 }
+
+select {
+	padding: 0.5em;
+	font-size:100%;
+}
+
 .spacer {
   margin: 3em 0;
 }
+
+
+

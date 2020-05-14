@@ -1,6 +1,5 @@
 import sqlite3
-
-DATABASE_FILE = "database.db"
+import config as Config
 
 # important:
 #-------------------------------------------------------------
@@ -17,7 +16,7 @@ DATABASE_FILE = "database.db"
 #
 #-------------------------------------------------------------
 
-con = sqlite3.connect(DATABASE_FILE)
+con = sqlite3.connect(Config.DATABASE_FILE)
 print("- Opened database successfully in file \"{}\"".format(DATABASE_FILE))
 
 # using Python's triple-quote for multi-line strings:
@@ -27,7 +26,11 @@ con.execute("""
   CREATE TABLE IF NOT EXISTS buggies (
     id                    INTEGER PRIMARY KEY,
     qty_wheels            INTEGER DEFAULT 4,
-    flag_color            VARCHAR(20),
+    power_type            STRING DEFAULT petrol,
+    power_units           INTEGER DEFAULT 1,
+    aux_power_type        STRING,
+    aux_power_units       INTEGER DEFAULT 0,
+    flag_color_primary    VARCHAR(20),
     flag_color_secondary  VARCHAR(20),
     flag_pattern          VARCHAR(20)
   )

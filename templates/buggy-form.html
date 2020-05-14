@@ -8,7 +8,67 @@
   <form action="/new" method="post">
     <label for="qty_wheels">Number of wheels:</label>
     <input type="text" name="qty_wheels" />
-    <input type="submit" class="button">
+	<p>
+	
+	<label for="power_type">Primary motive power:</label>
+    <select id="power">
+		<option value = "petrol">Petrol</option>
+		<option value = "fusion">Fusion</option>
+		<option value = "steam">Steam</option>
+		<option value = "bio">Bio</option>
+		<option value = "electric">Electric</option>
+		<option value = "rocket">Rocket</option>
+		<option value = "hamster">H A M S T E R</option>
+		<option value = "thermo">Thermo</option>
+		<option value = "solar">Solar</option>
+		<option value = "wind">Wind</option>
+	</select>
+	<p>
+	
+	<label for="power_units">Primary motive power units:</label>
+    <input type="text" name="power_units" />
+	<p>
+	
+	<label for="aux_power_type">Auxilliary motive power:</label>
+    <select id="aux_power">
+		<option value = "petrol">Petrol</option>
+		<option value = "fusion">Fusion</option>
+		<option value = "steam">Steam</option>
+		<option value = "bio">Bio</option>
+		<option value = "electric">Electric</option>
+		<option value = "rocket">Rocket</option>
+		<option value = "hamster">H A M S T E R</option>
+		<option value = "thermo">Thermo</option>
+		<option value = "solar">Solar</option>
+		<option value = "wind">Wind</option>
+	</select>
+	<p>
+	
+	<label for="aux_power_units">Auxilliary motive power units:</label>
+    <input type="text" name="aux_power_units" />
+	<p>
+	
+	<label for="flag_color_primary">Flag's colour:</label>
+    <input type="text" name="flag_color_primary" />
+	<p>
+	
+	<label for="flag_pattern">Flag's pattern :</label>
+    <select id="patterns">
+		<option value = "plain">Plain</option>
+		<option value = "vstripe">stripe (horizontal)</option>
+		<option value = "hstripe">stripe (vertical)</option>
+		<option value = "dstripe">stripe (diagonal)</option>
+		<option value = "checker">Checker</option>
+		<option value = "spot">Spot</option>
+	</select>
+	<p>
+	
+	<label for="flag_color_secondary">Flag's other colour  :</label>
+    <input type="text" name="flag_color_secondary" />
+	<p>
+	
+	<input type="submit" class="button">
+	
   </form>
   <p>
     <a href="/" class="button">home</a>

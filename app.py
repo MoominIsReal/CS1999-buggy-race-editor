@@ -1,19 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 import sqlite3 as sql
+import config as Config
 app = Flask(__name__)
-
-DATABASE_FILE = "database.db"
-DEFAULT_BUGGY_ID = "1"
-
-BUGGY_RACE_SERVER_URL = "http://rhul.buggyrace.net"
-
 
 #------------------------------------------------------------
 # the index page
 #------------------------------------------------------------
 @app.route('/')
 def home():
-   return render_template('index.html', server_url=BUGGY_RACE_SERVER_URL)
+   return render_template('index.html', server_url=Config.BUGGY_RACE_SERVER_URL)
 
 #------------------------------------------------------------
 # creating a new buggy:
@@ -29,9 +24,9 @@ def create_buggy():
     try:
       qty_wheels = request.form['qty_wheels']
       msg = f"qty_wheels={qty_wheels}" 
-      with sql.connect(DATABASE_FILE) as con:
+      with sql.connect(Config.DATABASE_FILE) as con:
         cur = con.cursor()
-        cur.execute("UPDATE buggies set qty_wheels=? WHERE id=?", (qty_wheels, DEFAULT_BUGGY_ID))
+        cur.execute("UPDATE buggies set qty_wheels=? WHERE id=?", (qty_wheels, Config.DEFAULT_BUGGY_ID))
         con.commit()
         msg = "Record successfully saved"
     except:
@@ -46,7 +41,7 @@ def create_buggy():
 #------------------------------------------------------------
 @app.route('/buggy')
 def show_buggies():
-  con = sql.connect(DATABASE_FILE)
+  con = sql.connect(Config.DATABASE_FILE)
   con.row_factory = sql.Row
   cur = con.cursor()
   cur.execute("SELECT * FROM buggies")
@@ -69,10 +64,10 @@ def edit_buggy():
 #------------------------------------------------------------
 @app.route('/json')
 def summary():
-  con = sql.connect(DATABASE_FILE)
+  con = sql.connect(Config.DATABASE_FILE)
   con.row_factory = sql.Row
   cur = con.cursor()
-  cur.execute("SELECT * FROM buggies WHERE id=? LIMIT 1", (DEFAULT_BUGGY_ID))
+  cur.execute("SELECT * FROM buggies WHERE id=? LIMIT 1", (Config.DEFAULT_BUGGY_ID))
   return jsonify(
       {k: v for k, v in dict(zip(
         [column[0] for column in cur.description], cur.fetchone())).items()
@@ -90,7 +85,7 @@ def summary():
 def delete_buggy():
   try:
     msg = "deleting buggy"
-    with sql.connect(DATABASE_FILE) as con:
+    with sql.connect(Config.DATABASE_FILE) as con:
       cur = con.cursor()
       cur.execute("DELETE FROM buggies")
       con.commit()
