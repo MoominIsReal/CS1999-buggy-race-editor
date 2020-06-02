@@ -69,5 +69,9 @@ select {
   margin: 3em 0;
 }
 
+#error{
+	color:#ff0000;
+}
+
 
 

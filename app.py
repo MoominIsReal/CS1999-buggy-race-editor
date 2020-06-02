@@ -20,10 +20,20 @@ def home():
 # ------------------------------------------------------------
 @app.route('/new', methods=['POST', 'GET'])
 def create_buggy():
+    err = False
+    wheels_err = False
+    qty_err = False
+    power_err = False
+    aux_power_err = False
+    value_err_msg = "Please enter a valid number"
+    even_num_msg = "Please enter an even number of wheels"
+    qty_wheels_int = 0
+
     if request.method == 'GET':
         return render_template("buggy-form.html")
     elif request.method == 'POST':
         msg = ""
+
         try:
             qty_wheels = request.form['qty_wheels']
             power_type = request.form['power_type']
@@ -35,7 +45,27 @@ def create_buggy():
             flag_pattern = request.form['flag_pattern']
 
             msg = f"qty_wheels={qty_wheels}"
+
             with sql.connect(Config.DATABASE_FILE) as con:
+
+                if not qty_wheels.isdigit():
+                    err = True
+                    wheels_err = True
+                else:
+                    qty_wheels_int = int(request.form['qty_wheels'])
+
+                if qty_wheels_int % 2 != 0:
+                    err = True
+                    qty_err = True
+
+                if not power_units.isdigit():
+                    err = True
+                    power_err = True
+
+                if not aux_power_units.isdigit():
+                    err = True
+                    aux_power_err = True
+
                 cur = con.cursor()
                 cur.execute(
                     "UPDATE buggies set qty_wheels=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?,"
@@ -44,13 +74,19 @@ def create_buggy():
                      flag_color_secondary, flag_pattern, Config.DEFAULT_BUGGY_ID))
                 con.commit()
                 msg = "Record successfully saved"
+
         except Exception as e:
             con.rollback()
             print(e)
             msg = "error in update operation"
         finally:
             con.close()
-            return render_template("updated.html", msg=msg)
+            if err:
+                return render_template("buggy-form.html", wheels_err=wheels_err, power_err=power_err,
+                                       aux_power_err=aux_power_err, qty_err=qty_err, value_err_msg=value_err_msg,
+                                       even_num_msg=even_num_msg)
+            else:
+                return render_template("updated.html", msg=msg)
 
 
 # ------------------------------------------------------------
@@ -85,7 +121,7 @@ def summary():
     con = sql.connect(Config.DATABASE_FILE)
     con.row_factory = sql.Row
     cur = con.cursor()
-    cur.execute("SELECT * FROM buggies WHERE id=? LIMIT 1", (Config.DEFAULT_BUGGY_ID))
+    cur.execute("SELECT * FROM buggies WHERE id=? LIMIT 1", Config.DEFAULT_BUGGY_ID)
     return jsonify(
         {k: v for k, v in dict(zip(
             [column[0] for column in cur.description], cur.fetchone())).items()

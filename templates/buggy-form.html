@@ -7,12 +7,20 @@
   <h1>Make buggy</h1>
   <form action="/new" method="post">
     <label for="qty_wheels">Number of wheels:</label>
-    <input type="text" name="qty_wheels" />
+    <input type="text" name="qty_wheels" value="4"/>
+	
+	{% if wheels_err %}
+		<div id="error">{{value_err_msg}}</div>
+	{% endif %}
+	{% if qty_err %}
+		<div id="error">{{even_num_msg}}</div>
+	{% endif %}
+	
 	<p>
 	
 	<label for="power_type">Primary motive power:</label><p>
 	
-	<input type="radio" id="petrol" name="power_type" value="Petrol"/>
+	<input type="radio" id="petrol" name="power_type" value="Petrol" checked/>
 	<label for = "petrol">Petrol</label><br>
 	
 	<input type="radio" id="fusion" name="power_type" value="Fusion"/>
@@ -45,12 +53,15 @@
 	<p>
 	
 	<label for="power_units">Primary motive power units:</label>
-    <input type="text" name="power_units" />
+    <input type="text" name="power_units" value="1" />
+	{% if power_err %}
+		<div id="error">{{value_err_msg}}</div>
+	{% endif %}
 	<p>
 	
 	<label for="aux_power_type">Auxilliary motive power:</label><P>
     
-	<input type="radio" id="petrol" name="aux_power_type" value="Petrol"/>
+	<input type="radio" id="petrol" name="aux_power_type" value="Petrol" checked/>
 	<label for = "petrol">Petrol</label><br>
 	
 	<input type="radio" id="fusion" name="aux_power_type" value="Fusion"/>
@@ -83,7 +94,10 @@
 	<p>
 	
 	<label for="aux_power_units">Auxilliary motive power units:</label>
-    <input type="text" name="aux_power_units" />
+    <input type="text" name="aux_power_units" value="1" />
+	{% if aux_power_err %}
+		<div id="error">{{value_err_msg}}</div>
+	{% endif %}
 	<p>
 	
 	<label for="flag_color_primary">Flag's colour:</label>
@@ -92,7 +106,7 @@
 	
 	<label for="flag_pattern">Flag's pattern:</label><p>
 
-	<input type="radio" id="plain" name="flag_pattern" value="Plain"/>
+	<input type="radio" id="plain" name="flag_pattern" value="Plain" checked/>
 	<label for = "plain">Plain</label><br>
 	
 	<input type="radio" id="vstripe" name="flag_pattern" value="stripe (horizontal)"/>
