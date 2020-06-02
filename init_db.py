@@ -2,7 +2,7 @@ import sqlite3
 import config as Config
 
 # important:
-#-------------------------------------------------------------
+# -------------------------------------------------------------
 # This script initialises your database for you using SQLite,
 # just to get you started... there are better ways to express
 # the data you're going to need... especially outside SQLite.
@@ -14,21 +14,21 @@ import config as Config
 # filename) appears in more than one place in the project.
 # That doesn't feel right, does it?
 #
-#-------------------------------------------------------------
+# -------------------------------------------------------------
 
 con = sqlite3.connect(Config.DATABASE_FILE)
-print("- Opened database successfully in file \"{}\"".format(DATABASE_FILE))
+print("- Opened database successfully in file \"{}\"".format(Config.DATABASE_FILE))
 
 # using Python's triple-quote for multi-line strings:
 
 con.execute("""
 
   CREATE TABLE IF NOT EXISTS buggies (
-    id                    INTEGER PRIMARY KEY,
+    id                    INTEGER PRIMARY KEY AUTOINCREMENT,
     qty_wheels            INTEGER DEFAULT 4,
-    power_type            STRING DEFAULT petrol,
+    power_type            VARCHAR(20),
     power_units           INTEGER DEFAULT 1,
-    aux_power_type        STRING,
+    aux_power_type        VARCHAR(20),
     aux_power_units       INTEGER DEFAULT 0,
     flag_color_primary    VARCHAR(20),
     flag_color_secondary  VARCHAR(20),
@@ -44,11 +44,11 @@ cur = con.cursor()
 cur.execute("SELECT * FROM buggies LIMIT 1")
 rows = cur.fetchall()
 if len(rows) == 0:
-  cur.execute("INSERT INTO buggies (qty_wheels) VALUES (4)")
-  con.commit()
-  print("- Added one 4-wheeled buggy")
+    cur.execute("INSERT INTO buggies (qty_wheels) VALUES (4)")
+    con.commit()
+    print("- Added one 4-wheeled buggy")
 else:
-  print("- Found a buggy in the database, nice")
+    print("- Found a buggy in the database, nice")
 print("- done")
 
 con.close()
