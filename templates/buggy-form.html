@@ -20,35 +20,35 @@
 	
 	<label for="power_type">Primary motive power:</label><p>
 	
-	<input type="radio" id="petrol" name="power_type" value="Petrol" checked/>
-	<label for = "petrol">Petrol</label><br>
+	<input type="radio" id="petrol" name="power_type" value="petrol" checked/>
+	<label for = "petrol">Petroleum-fuelled internal combustion engine</label><br>
 	
-	<input type="radio" id="fusion" name="power_type" value="Fusion"/>
-	<label for = "fusion">Fusion</label><br>
+	<input type="radio" id="fusion" name="power_type" value="fusion"/>
+	<label for = "fusion">Fusion reactor</label><br>
 	
-	<input type="radio" id="steam" name="power_type" value="Steam"/>
-	<label for = "steam">Steam</label><br>
+	<input type="radio" id="steam" name="power_type" value="steam"/>
+	<label for = "steam">Steam engine</label><br>
 	
-	<input type="radio" id="bio" name="power_type" value="Bio"/>
-	<label for = "bio">Bio</label><br>
+	<input type="radio" id="bio" name="power_type" value="bio"/>
+	<label for = "bio">Bio-fuelled internal combustion engine</label><br>
 	
-	<input type="radio" id="electric" name="power_type" value="Electric"/>
-	<label for = "electric">Electric</label><br>
+	<input type="radio" id="electric" name="power_type" value="electric"/>
+	<label for = "electric">Lithium-ion battery</label><br>
 	
-	<input type="radio" id="rocket" name="power_type" value="Rocket"/>
-	<label for = "rocket">Rocket</label><br>
+	<input type="radio" id="rocket" name="power_type" value="rocket"/>
+	<label for = "rocket">Rocket fuel</label><br>
 	
-	<input type="radio" id="hamster" name="power_type" value="H A M S T E R"/>
+	<input type="radio" id="hamster" name="power_type" value="hamster"/>
 	<label for = "hamster">H A M S T E R</label><br>
 	
-	<input type="radio" id="thermo" name="power_type" value="Thermo"/>
-	<label for = "thermo">Thermo</label><br>
+	<input type="radio" id="thermo" name="power_type" value="thermo"/>
+	<label for = "thermo">Thermonuclear reactor </label><br>
 	
-	<input type="radio" id="solar" name="power_type" value="Solar"/>
-	<label for = "solar">Solar</label><br>
+	<input type="radio" id="solar" name="power_type" value="solar"/>
+	<label for = "solar">Bank of solar panels</label><br>
 	
-	<input type="radio" id="wind" name="power_type" value="Wind"/>
-	<label for = "wind">Wind</label><br>
+	<input type="radio" id="wind" name="power_type" value="wind"/>
+	<label for = "wind">Sailing rig</label><br>
 
 	<p>
 	
@@ -61,43 +61,47 @@
 	
 	<label for="aux_power_type">Auxilliary motive power:</label><P>
     
-	<input type="radio" id="petrol" name="aux_power_type" value="Petrol" checked/>
+	<input type="radio" id="petrol" name="aux_power_type" value="petrol" checked/>
 	<label for = "petrol">Petrol</label><br>
 	
-	<input type="radio" id="fusion" name="aux_power_type" value="Fusion"/>
+	<input type="radio" id="fusion" name="aux_power_type" value="fusion"/>
 	<label for = "fusion">Fusion</label><br>
 	
-	<input type="radio" id="steam" name="aux_power_type" value="Steam"/>
+	<input type="radio" id="steam" name="aux_power_type" value="steam"/>
 	<label for = "steam">Steam</label><br>
 	
-	<input type="radio" id="bio" name="aux_power_type" value="Bio"/>
+	<input type="radio" id="bio" name="aux_power_type" value="bio"/>
 	<label for = "bio">Bio</label><br>
 	
-	<input type="radio" id="electric" name="aux_power_type" value="Electric"/>
+	<input type="radio" id="electric" name="aux_power_type" value="electric"/>
 	<label for = "electric">Electric</label><br>
 	
-	<input type="radio" id="rocket" name="aux_power_type" value="Rocket"/>
+	<input type="radio" id="rocket" name="aux_power_type" value="rocket"/>
 	<label for = "rocket">Rocket</label><br>
 
-	<input type="radio" id="hamster" name="aux_power_type" value="H A M S T E R"/>
+	<input type="radio" id="hamster" name="aux_power_type" value="hamster"/>
 	<label for = "hamster">H A M S T E R</label><br>
 	
-	<input type="radio" id="thermo" name="aux_power_type" value="Thermo"/>
+	<input type="radio" id="thermo" name="aux_power_type" value="thermo"/>
 	<label for = "thermo">Thermo</label><br>
 	
-	<input type="radio" id="solar" name="aux_power_type" value="Solar"/>
+	<input type="radio" id="solar" name="aux_power_type" value="solar"/>
 	<label for = "solar">Solar</label><br>
 	
-	<input type="radio" id="wind" name="aux_power_type" value="Wind"/>
+	<input type="radio" id="wind" name="aux_power_type" value="wind"/>
 	<label for = "wind">Wind</label><br>
 
 	<p>
 	
 	<label for="aux_power_units">Auxilliary motive power units:</label>
-    <input type="text" name="aux_power_units" value="1" />
+    <input type="text" name="aux_power_units" value="0" />
 	{% if aux_power_err %}
 		<div id="error">{{value_err_msg}}</div>
 	{% endif %}
+	<p>
+	
+	<label for="hamster_booster">Hamster booster:</label>
+    <input type="text" name="hamster_booster" value="0" />
 	<p>
 	
 	<label for="flag_color_primary">Flag's colour:</label>
@@ -106,7 +110,7 @@
 	
 	<label for="flag_pattern">Flag's pattern:</label><p>
 
-	<input type="radio" id="plain" name="flag_pattern" value="Plain" checked/>
+	<input type="radio" id="plain" name="flag_pattern" value="plain" checked/>
 	<label for = "plain">Plain</label><br>
 	
 	<input type="radio" id="vstripe" name="flag_pattern" value="stripe (horizontal)"/>
@@ -118,16 +122,133 @@
 	<input type="radio" id="dstripe" name="flag_pattern" value="stripe (diagonal)"/>
 	<label for = "dstripe">stripe (diagonal)</label><br>
 	
-	<input type="radio" id="checker" name="flag_pattern" value="Checker"/>
+	<input type="radio" id="checker" name="flag_pattern" value="checker"/>
 	<label for = "checker">Checker</label><br>
 	
-	<input type="radio" id="spot" name="flag_pattern" value="Spot"/>
+	<input type="radio" id="spot" name="flag_pattern" value="spot"/>
 	<label for = "spot">Spot</label><br>
-	
 	<p>
-	
+
+
 	<label for="flag_color_secondary">Flag's other colour:</label>
     <input type="color" name="flag_color_secondary" value="#66ccff"/>
+	<p>
+	
+	
+	<label for="tyres">Types of tyres:</label><p>
+	
+    <input type="radio" id ="knobbly" name="tyres" value="knobbly" checked/>
+	<label for = "knobbly">Knobbly</label><br>
+	
+	<input type="radio" id ="slick" name="tyres" value="slick"/>
+	<label for = "slick">Slick</label><br>
+	
+	<input type="radio" id ="steelband" name="tyres" value="steelband"/>
+	<label for = "steelband">Steelband</label><br>
+	
+	<input type="radio" id ="reactive" name="tyres" value="reactive"/>
+	<label for = "reactive">Reactive</label><br>
+	
+	<input type="radio" id ="maglev" name="tyres" value="maglev"/>
+	<label for = "maglev">Maglev</label><br>
+	<p>
+	
+	<label for="qty_tyres">Number of tyres:</label>
+    <input type="text" name="qty_tyres" value="4" />
+	<p>
+	
+	
+	<label for="armour">Armour type:</label><p>
+	
+    <input type="radio" id ="none" name="armour" value="none" checked/>
+	<label for = "none">None</label><br>
+	
+	<input type="radio" id ="wood" name="armour" value="wood"/>
+	<label for = "wood">Wood</label><br>
+	
+	<input type="radio" id ="aluminium" name="armour" value="aluminium"/>
+	<label for = "aluminium">Aluminium</label><br>
+	
+	<input type="radio" id ="thinsteel" name="armour" value="thinsteel"/>
+	<label for = "thinsteel">Thinsteel</label><br>
+	
+	<input type="radio" id ="thicksteel" name="armour" value="thicksteel"/>
+	<label for = "thicksteel">Thicksteel</label><br>
+	
+	<input type="radio" id ="titanium" name="armour" value="titanium"/>
+	<label for = "titanium">Titanium</label><br>
+	<p>
+	
+		
+	<label for="attack">Attack type:</label><p>
+	
+    <input type="radio" id ="none" name="attack" value="none" checked/>
+	<label for = "none">None</label><br>
+	
+	<input type="radio" id ="spike" name="attack" value="spike"/>
+	<label for = "spike">Spike</label><br>
+	
+	<input type="radio" id ="flame" name="armour" value="flame"/>
+	<label for = "flame">Flame</label><br>
+	
+	<input type="radio" id ="charge" name="attack" value="charge"/>
+	<label for = "charge">Charge</label><br>
+	
+	<input type="radio" id ="biohazard" name="attack" value="biohazard"/>
+	<label for = "biohazard">Biohazard</label><br>
+	<p>
+	
+	<label for="qty_attacks">Number of attacks:</label>
+    <input type="text" name="qty_attacks" value="0" />
+	<p>
+	
+	<label for="fireproof">Fireproof?:</label><p>
+    <input type="radio" id ="false" name="fireproof" value="false" checked/>
+	<label for = "false">No</label><br>
+	<input type="radio" id ="true" name="fireproof" value="true"/>
+	<label for = "true">Yes</label><br>
+	<p>
+	
+	<label for="insulated">Insulated?:</label><p>
+    <input type="radio" id ="false" name="insulated" value="false" checked/>
+	<label for = "false">No</label><br>
+	<input type="radio" id ="true" name="insulated" value="true"/>
+	<label for = "true">Yes</label><br>
+	<p>
+	
+	<label for="antibiotic">Antibiotic?:</label><p>
+    <input type="radio" id ="false" name="antibiotic" value="false" checked/>
+	<label for = "false">No</label><br>
+	<input type="radio" id ="true" name="antibiotic" value="true"/>
+	<label for = "true">Yes</label><br>
+	<p>
+	
+	<label for="banging">Banging sound system?:</label><p>
+    <input type="radio" id ="false" name="banging" value="false" checked/>
+	<label for = "false">No</label><br>
+	<input type="radio" id ="true" name="banging" value="true"/>
+	<label for = "true">Yes</label><br>
+	<p>
+	
+	<label for="algo">Race computer algorithm:</label><p>
+	
+	<input type="radio" id ="defensive" name="algo" value="defensive" checked/>
+	<label for = "defensive">Defensive</label><br>
+	
+	<input type="radio" id ="steady" name="algo" value="steady"/>
+	<label for = "steady">Steady</label><br>
+	
+	<input type="radio" id ="offensive" name="algo" value="offensive"/>
+	<label for = "offensive">Offensive</label><br>
+	
+	<input type="radio" id ="titfortat" name="algo" value="titfortat"/>
+	<label for = "titfortat">Tit for tat</label><br>
+	
+	<input type="radio" id ="random" name="algo" value="random"/>
+	<label for = "random">Random</label><br>
+	
+	<input type="radio" id ="buggy" name="algo" value="buggy"/>
+	<label for = "buggy">Buggy</label><br>
 	<p>
 	
 	<input type="submit" class="button" value="Upload buggy">
