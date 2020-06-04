@@ -132,6 +132,9 @@
 
 	<label for="flag_color_secondary">Flag's other colour:</label>
     <input type="color" name="flag_color_secondary" value="#66ccff"/>
+	{% if color_err %}
+		<div id="error">{{color_err_msg}}</div>
+	{% endif %}
 	<p>
 	
 	

@@ -21,9 +21,10 @@ print("- Opened database successfully in file \"{}\"".format(Config.DATABASE_FIL
 
 # using Python's triple-quote for multi-line strings:
 
+con.execute("DROP TABLE buggies")
 con.execute("""
 
-  CREATE TABLE IF NOT EXISTS buggies (
+  CREATE TABLE buggies (
     id                    INTEGER PRIMARY KEY AUTOINCREMENT,
     qty_wheels            INTEGER DEFAULT 4,
     power_type            VARCHAR(20),
