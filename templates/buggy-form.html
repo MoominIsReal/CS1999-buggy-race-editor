@@ -106,6 +106,10 @@
 	
 	<label for="flag_color_primary">Flag's colour:</label>
     <input type="color" name="flag_color_primary" value="#66ccff"/>
+	{% if color_err %}
+		<div id="error">{{color_err_msg}}</div>
+	{% endif %}
+	
 	<p>
 	
 	<label for="flag_pattern">Flag's pattern:</label><p>
@@ -158,6 +162,9 @@
 	
 	<label for="qty_tyres">Number of tyres:</label>
     <input type="text" name="qty_tyres" value="4" />
+	{% if tyre_err %}
+		<div id="error">{{tyre_err_msg}}</div>
+	{% endif %}
 	<p>
 	
 	

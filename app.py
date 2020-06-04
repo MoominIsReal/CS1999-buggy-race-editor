@@ -30,8 +30,7 @@ def create_buggy():
     value_err_msg = "Please enter a valid number"
     even_num_msg = "Please enter an even number of wheels"
     color_err_msg = "Your secondary flag colour cannot be the same as your primary colour"
-    qty_wheels_int = 0
-    qty_tyres_int = 0
+    tyre_err_msg = "Must be equal to or greater than the number of wheels"
 
     if request.method == 'GET':
         return render_template("buggy-form.html")
@@ -64,6 +63,10 @@ def create_buggy():
 
         # with sql.connect(config.DATABASE_FILE) as con:
         qty_wheels_int = int(request.form['qty_wheels'])
+        qty_tyres_int = int(request.form['qty_tyres'])
+        primary = str(request.form['flag_color_primary'])
+        secondary = str(request.form['flag_color_secondary'])
+        pattern = str(request.form['flag_pattern'])
 
         if not qty_wheels.isdigit():
             err = True
@@ -81,30 +84,28 @@ def create_buggy():
             err = True
             aux_power_err = True
 
+        if (primary == secondary) and pattern != "plain":
+            err = True
+            color_err = True
 
+        if qty_tyres_int < qty_wheels_int:
+            err = True
+            tyre_err = True
 
-
-        # if primary == secondary and (pattern != 'plain'):
-        #    err = True
-        #    color_err = True
-
-        # if qty_tyres_int > qty_wheels_int:
-        #    err = True
-        #    tyre_err = True
-
-        cur = con.cursor()
-        cur.execute(
-            "UPDATE buggies set qty_wheels=?, power_type=?, power_units=?, aux_power_type=?,"
-            " aux_power_units=?, hamster_booster=?,flag_color_primary=?,"
-            " flag_color_secondary=?, flag_pattern=?,"
-            " tyres=?,qty_tyres=?,armour=?,attack=?,qty_attacks=?,"
-            "fireproof=?, insulated=?, antibiotic=?, banging=?, algo=? WHERE id=?",
-            (qty_wheels, power_type, power_units, aux_power_type, aux_power_units, hamster_booster,
-             flag_color_primary, flag_color_secondary, flag_pattern, tyres,
-             qty_tyres, armour, attack, qty_attacks, fireproof, insulated,
-             antibiotic, banging, algo, config.DEFAULT_BUGGY_ID))
-        con.commit()
-        msg = "Record successfully saved"
+        if not err:
+            cur = con.cursor()
+            cur.execute(
+                "UPDATE buggies set qty_wheels=?, power_type=?, power_units=?, aux_power_type=?,"
+                " aux_power_units=?, hamster_booster=?,flag_color_primary=?,"
+                " flag_color_secondary=?, flag_pattern=?,"
+                " tyres=?,qty_tyres=?,armour=?,attack=?,qty_attacks=?,"
+                "fireproof=?, insulated=?, antibiotic=?, banging=?, algo=? WHERE id=?",
+                (qty_wheels, power_type, power_units, aux_power_type, aux_power_units, hamster_booster,
+                 flag_color_primary, flag_color_secondary, flag_pattern, tyres,
+                 qty_tyres, armour, attack, qty_attacks, fireproof, insulated,
+                 antibiotic, banging, algo, config.DEFAULT_BUGGY_ID))
+            con.commit()
+            msg = "Record successfully saved"
 
     except Exception as e:
         con.rollback()
@@ -116,7 +117,7 @@ def create_buggy():
             return render_template("buggy-form.html", wheels_err=wheels_err, power_err=power_err,
                                    aux_power_err=aux_power_err, qty_err=qty_err, value_err_msg=value_err_msg,
                                    even_num_msg=even_num_msg, color_err=color_err, tyre_err=tyre_err,
-                                   color_err_msg=color_err_msg)
+                                   color_err_msg=color_err_msg, tyre_err_msg=tyre_err_msg)
         else:
             return render_template("updated.html", msg=msg)
 
@@ -170,6 +171,7 @@ def summary():
 # ------------------------------------------------------------
 @app.route('/delete', methods=['POST'])
 def delete_buggy():
+    msg = "deleting buggy"
     try:
         msg = "deleting buggy"
         with sql.connect(config.DATABASE_FILE) as con:
