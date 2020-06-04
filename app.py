@@ -81,6 +81,9 @@ def create_buggy():
             err = True
             aux_power_err = True
 
+
+
+
         # if primary == secondary and (pattern != 'plain'):
         #    err = True
         #    color_err = True
