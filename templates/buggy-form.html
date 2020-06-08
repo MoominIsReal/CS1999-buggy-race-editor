@@ -187,6 +187,9 @@
 	
 	<label for="hamster_booster">Hamster booster:</label>
     <input type="text" name="hamster_booster" value="{{ buggy['hamster_booster'] }}" />
+	{% if hamster_err %}
+		<div id="error">{{value_err_msg}}</div>
+	{% endif %}
 	<p>
 	
 	<label for="flag_color_primary">Flag's colour:</label>
@@ -292,6 +295,9 @@
 	{% if tyre_err %}
 		<div id="error">{{tyre_err_msg}}</div>
 	{% endif %}
+	{% if tyres_err %}
+		<div id="error">{{value_err_msg}}</div>
+	{% endif %}
 	<p>
 	
 	
@@ -381,6 +387,9 @@
 	
 	<label for="qty_attacks">Number of attacks:</label>
     <input type="text" name="qty_attacks" value="{{ buggy['qty_attacks'] }} " />
+	{% if attack_err %}
+		<div id="error">{{value_err_msg}}</div>
+	{% endif %}
 	<p>
 	
 	<label for="fireproof">Fireproof?:</label><p>

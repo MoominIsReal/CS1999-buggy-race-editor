@@ -27,6 +27,9 @@ def create_buggy():
     aux_power_err = False
     color_err = False
     tyre_err = False
+    hamster_err = False
+    tyres_err = False
+    attack_err = False
     value_err_msg = "Please enter a valid number"
     even_num_msg = "Please enter an even number of wheels"
     color_err_msg = "Your secondary flag colour cannot be the same as your primary colour"
@@ -67,8 +70,6 @@ def create_buggy():
 
         msg = f"qty_wheels={qty_wheels}"
 
-        qty_wheels_int = int(request.form['qty_wheels'])
-        qty_tyres_int = int(request.form['qty_tyres'])
         primary = str(request.form['flag_color_primary'])
         secondary = str(request.form['flag_color_secondary'])
         pattern = str(request.form['flag_pattern'])
@@ -77,9 +78,11 @@ def create_buggy():
             err = True
             wheels_err = True
 
-        if qty_wheels_int % 2 != 0:
-            err = True
-            qty_err = True
+        if not wheels_err:
+            qty_wheels_int = int(request.form['qty_wheels'])
+            if qty_wheels_int % 2 != 0:
+                err = True
+                qty_err = True
 
         if not power_units.isdigit():
             err = True
@@ -89,13 +92,27 @@ def create_buggy():
             err = True
             aux_power_err = True
 
+        if not hamster_booster.isdigit():
+            err = True
+            hamster_err = True
+
+        if not qty_tyres.isdigit():
+            err = True
+            tyres_err = True
+
+        if not qty_attacks.isdigit():
+            err = True
+            attack_err = True
+
         if (primary == secondary) and pattern != "plain":
             err = True
             color_err = True
 
-        if qty_tyres_int < qty_wheels_int:
-            err = True
-            tyre_err = True
+        if not tyres_err:
+            qty_tyres_int = int(request.form['qty_tyres'])
+            if qty_tyres_int < qty_wheels_int:
+                err = True
+                tyre_err = True
 
         if not err:
             cur = con.cursor()
@@ -122,7 +139,8 @@ def create_buggy():
             return render_template("buggy-form.html", buggy=request.form, wheels_err=wheels_err, power_err=power_err,
                                    aux_power_err=aux_power_err, qty_err=qty_err, value_err_msg=value_err_msg,
                                    even_num_msg=even_num_msg, color_err=color_err, tyre_err=tyre_err,
-                                   color_err_msg=color_err_msg, tyre_err_msg=tyre_err_msg)
+                                   color_err_msg=color_err_msg, tyre_err_msg=tyre_err_msg, hamster_err=hamster_err,
+                                   tyres_err=tyres_err, attack_err=attack_err)
         else:
             return render_template("updated.html", msg=msg)
 
