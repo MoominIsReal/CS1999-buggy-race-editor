@@ -30,7 +30,7 @@ def create_buggy():
     value_err_msg = "Please enter a valid number"
     even_num_msg = "Please enter an even number of wheels"
     color_err_msg = "Your secondary flag colour cannot be the same as your primary colour"
-    tyre_err_msg = "Must be equal to or greater than the number of wheels"
+    tyre_err_msg = "Must be greater than or equal to the number of wheels"
 
     if request.method == 'GET':
         con = sql.connect(config.DATABASE_FILE)
@@ -119,7 +119,7 @@ def create_buggy():
     finally:
         con.close()
         if err:
-            return render_template("buggy-form.html", wheels_err=wheels_err, power_err=power_err,
+            return render_template("buggy-form.html", buggy=request.form, wheels_err=wheels_err, power_err=power_err,
                                    aux_power_err=aux_power_err, qty_err=qty_err, value_err_msg=value_err_msg,
                                    even_num_msg=even_num_msg, color_err=color_err, tyre_err=tyre_err,
                                    color_err_msg=color_err_msg, tyre_err_msg=tyre_err_msg)
