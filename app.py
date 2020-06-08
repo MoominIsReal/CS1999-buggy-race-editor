@@ -30,10 +30,12 @@ def create_buggy():
     hamster_err = False
     tyres_err = False
     attack_err = False
+    algo_err = False
     value_err_msg = "Please enter a valid number"
     even_num_msg = "Please enter an even number of wheels"
     color_err_msg = "Your secondary flag colour cannot be the same as your primary colour"
     tyre_err_msg = "Must be greater than or equal to the number of wheels"
+    algo_err_msg = "Race computer algorithm cannot be buggy"
 
     if request.method == 'GET':
         con = sql.connect(config.DATABASE_FILE)
@@ -73,6 +75,7 @@ def create_buggy():
         primary = str(request.form['flag_color_primary'])
         secondary = str(request.form['flag_color_secondary'])
         pattern = str(request.form['flag_pattern'])
+        race_algo = str(request.form['algo'])
 
         if not qty_wheels.isdigit():
             err = True
@@ -114,6 +117,10 @@ def create_buggy():
                 err = True
                 tyre_err = True
 
+        if race_algo == "buggy":
+            err = True
+            algo_err = True
+
         if not err:
             cur = con.cursor()
             cur.execute(
@@ -140,7 +147,8 @@ def create_buggy():
                                    aux_power_err=aux_power_err, qty_err=qty_err, value_err_msg=value_err_msg,
                                    even_num_msg=even_num_msg, color_err=color_err, tyre_err=tyre_err,
                                    color_err_msg=color_err_msg, tyre_err_msg=tyre_err_msg, hamster_err=hamster_err,
-                                   tyres_err=tyres_err, attack_err=attack_err)
+                                   tyres_err=tyres_err, attack_err=attack_err, algo_err_msg=algo_err_msg,
+                                   algo_err=algo_err)
         else:
             return render_template("updated.html", msg=msg)
 

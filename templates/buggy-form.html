@@ -497,6 +497,9 @@
 	{% endif %}
 	>
 	<label for = "buggy">Buggy</label><br>
+	{% if algo_err %}
+		<div id="error">{{algo_err_msg}}</div>
+	{% endif %}
 	<p>
 	
 	<input type="submit" class="button" value="Upload buggy">
