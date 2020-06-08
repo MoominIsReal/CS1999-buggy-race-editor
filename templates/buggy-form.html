@@ -7,7 +7,7 @@
   <h1>Make buggy</h1>
   <form action="/new" method="post">
     <label for="qty_wheels">Number of wheels:</label>
-    <input type="text" name="qty_wheels" value="4"/>
+    <input type="text" name="qty_wheels" value="{{ buggy['qty_wheels'] }}">
 	
 	{% if wheels_err %}
 		<div id="error">{{value_err_msg}}</div>
@@ -19,245 +19,474 @@
 	<p>
 
 	<label for="power_type">Primary motive power:</label><p>
-	
-	<input type="radio" id="petrol" name="power_type" value="petrol" checked/>
+
+	<input type="radio" id="petrol" name="power_type" value="petrol" 
+	{% if buggy['power_type'] == "petrol" %}
+		checked
+	{% endif %}>
 	<label for = "petrol">Petroleum-fuelled internal combustion engine</label><br>
 	
-	<input type="radio" id="fusion" name="power_type" value="fusion"/>
+	<input type="radio" id="fusion" name="power_type" value="fusion"
+	{% if  buggy['power_type']  == "fusion" %}
+		checked
+	{% endif %}
+	>
 	<label for = "fusion">Fusion reactor</label><br>
 	
-	<input type="radio" id="steam" name="power_type" value="steam"/>
+	<input type="radio" id="steam" name="power_type" value="steam"
+	{% if  buggy['power_type']  == "steam" %}
+		checked
+	{% endif %}
+	>
 	<label for = "steam">Steam engine</label><br>
 	
-	<input type="radio" id="bio" name="power_type" value="bio"/>
+	<input type="radio" id="bio" name="power_type" value="bio"
+	{% if  buggy['power_type']  == "bio" %}
+		checked
+	{% endif %}
+	>
 	<label for = "bio">Bio-fuelled internal combustion engine</label><br>
 	
-	<input type="radio" id="electric" name="power_type" value="electric"/>
+	<input type="radio" id="electric" name="power_type" value="electric"
+	{% if  buggy['power_type']  == "electric" %}
+		checked
+	{% endif %}
+	>
 	<label for = "electric">Lithium-ion battery</label><br>
 	
-	<input type="radio" id="rocket" name="power_type" value="rocket"/>
+	<input type="radio" id="rocket" name="power_type" value="rocket"
+	{% if  buggy['power_type']  == "rocket" %}
+		checked
+	{% endif %}
+	>
 	<label for = "rocket">Rocket fuel</label><br>
 	
-	<input type="radio" id="hamster" name="power_type" value="hamster"/>
+	<input type="radio" id="hamster" name="power_type" value="hamster"
+	{% if  buggy['power_type']  == "hamster" %}
+		checked
+	{% endif %}
+	>
 	<label for = "hamster">H A M S T E R</label><br>
 	
-	<input type="radio" id="thermo" name="power_type" value="thermo"/>
+	<input type="radio" id="thermo" name="power_type" value="thermo"
+	{% if  buggy['power_type']  == "thermo" %}
+		checked
+	{% endif %}
+	>
 	<label for = "thermo">Thermonuclear reactor </label><br>
 	
-	<input type="radio" id="solar" name="power_type" value="solar"/>
+	<input type="radio" id="solar" name="power_type" value="solar"
+	{% if  buggy['power_type']  == "solar" %}
+		checked
+	{% endif %}>
 	<label for = "solar">Bank of solar panels</label><br>
 	
-	<input type="radio" id="wind" name="power_type" value="wind"/>
+	<input type="radio" id="wind" name="power_type" value="wind"
+	{% if  buggy['power_type']  == "wind" %}
+		checked
+	{% endif %}
+	>
 	<label for = "wind">Sailing rig</label><br>
 
 	<p>
 	
 	<label for="power_units">Primary motive power units:</label>
-    <input type="text" name="power_units" value="1" />
+    <input type="text" name="power_units" value="{{buggy['power_units']}}" />
 	{% if power_err %}
 		<div id="error">{{value_err_msg}}</div>
 	{% endif %}
 	<p>
 	
 	<label for="aux_power_type">Auxilliary motive power:</label><P>
+	
+	<input type="radio" id="none" name="aux_power_type" value="none"
+	{% if buggy['aux_power_type']  == "none" %}
+		checked
+	{% endif %}
+	>
+	<label for = "none">None</label><br>
     
-	<input type="radio" id="petrol" name="aux_power_type" value="petrol" checked/>
+	<input type="radio" id="petrol" name="aux_power_type" value="petrol"
+	{% if buggy['aux_power_type']  == "petrol" %}
+		checked
+	{% endif %}
+	>
 	<label for = "petrol">Petrol</label><br>
 	
-	<input type="radio" id="fusion" name="aux_power_type" value="fusion"/>
+	<input type="radio" id="fusion" name="aux_power_type" value="fusion"
+	{% if buggy['aux_power_type']  == "fusion" %}
+		checked
+	{% endif %}
+	>
 	<label for = "fusion">Fusion</label><br>
 	
-	<input type="radio" id="steam" name="aux_power_type" value="steam"/>
+	<input type="radio" id="steam" name="aux_power_type" value="steam"
+	{% if buggy['aux_power_type']  == "steam" %}
+		checked
+	{% endif %}
+	>
 	<label for = "steam">Steam</label><br>
 	
-	<input type="radio" id="bio" name="aux_power_type" value="bio"/>
+	<input type="radio" id="bio" name="aux_power_type" value="bio"
+	{% if buggy['aux_power_type']  == "bio" %}
+		checked
+	{% endif %}
+	>
 	<label for = "bio">Bio</label><br>
 	
-	<input type="radio" id="electric" name="aux_power_type" value="electric"/>
+	<input type="radio" id="electric" name="aux_power_type" value="electric"
+	{% if buggy['aux_power_type']  == "electric" %}
+		checked
+	{% endif %}
+	>
 	<label for = "electric">Electric</label><br>
 	
-	<input type="radio" id="rocket" name="aux_power_type" value="rocket"/>
+	<input type="radio" id="rocket" name="aux_power_type" value="rocket"
+	{% if buggy['aux_power_type']  == "rocket" %}
+		checked
+	{% endif %}
+	>
 	<label for = "rocket">Rocket</label><br>
 
-	<input type="radio" id="hamster" name="aux_power_type" value="hamster"/>
+	<input type="radio" id="hamster" name="aux_power_type" value="hamster"
+	{% if buggy['aux_power_type']  == "hamster" %}
+		checked
+	{% endif %}
+	>
 	<label for = "hamster">H A M S T E R</label><br>
 	
-	<input type="radio" id="thermo" name="aux_power_type" value="thermo"/>
+	<input type="radio" id="thermo" name="aux_power_type" value="thermo"
+	{% if  buggy['aux_power_type']  == "thermo" %}
+		checked
+	{% endif %}
+	>
 	<label for = "thermo">Thermo</label><br>
 	
-	<input type="radio" id="solar" name="aux_power_type" value="solar"/>
+	<input type="radio" id="solar" name="aux_power_type" value="solar"
+	{% if  buggy['aux_power_type']  == "solar" %}
+		checked
+	{% endif %}
+	>
 	<label for = "solar">Solar</label><br>
 	
-	<input type="radio" id="wind" name="aux_power_type" value="wind"/>
+	<input type="radio" id="wind" name="aux_power_type" value="wind"
+	{% if  buggy['aux_power_type']  == "wind" %}
+		checked
+	{% endif %}
+	>
 	<label for = "wind">Wind</label><br>
 
 	<p>
 	
 	<label for="aux_power_units">Auxilliary motive power units:</label>
-    <input type="text" name="aux_power_units" value="0" />
+    <input type="text" name="aux_power_units" value="{{ buggy['aux_power_units'] }}" />
 	{% if aux_power_err %}
 		<div id="error">{{value_err_msg}}</div>
 	{% endif %}
 	<p>
 	
 	<label for="hamster_booster">Hamster booster:</label>
-    <input type="text" name="hamster_booster" value="0" />
+    <input type="text" name="hamster_booster" value="{{ buggy['hamster_booster'] }}" />
 	<p>
 	
 	<label for="flag_color_primary">Flag's colour:</label>
-    <input type="color" name="flag_color_primary" value="#66ccff"/>
+    <input type="color" name="flag_color_primary" value="{{ buggy['flag_color_primary'] }}"/>
 	{% if color_err %}
 		<div id="error">{{color_err_msg}}</div>
 	{% endif %}
 	
 	<p>
 	
+	<label for="flag_color_secondary">Flag's other colour:</label>
+    <input type="color" name="flag_color_secondary" value="{{ buggy['flag_color_secondary'] }}"/>
+	{% if color_err %}
+		<div id="error">{{color_err_msg}}</div>
+	{% endif %}
+	<p>
+
 	<label for="flag_pattern">Flag's pattern:</label><p>
 
-	<input type="radio" id="plain" name="flag_pattern" value="plain" checked/>
+	<input type="radio" id="plain" name="flag_pattern" value="plain"
+	{% if  buggy['flag_pattern']  == "plain" %}
+		checked
+	{% endif %}
+	>
 	<label for = "plain">Plain</label><br>
 	
-	<input type="radio" id="vstripe" name="flag_pattern" value="stripe (horizontal)"/>
+	<input type="radio" id="vstripe" name="flag_pattern" value="stripe (horizontal)"
+	{% if  buggy['flag_pattern']  == "vstripe" %}
+		checked
+	{% endif %}
+	>
 	<label for = "vstripe">stripe (horizontal)</label><br>
 	
-	<input type="radio" id="hstripe" name="flag_pattern" value="stripe (vertical)"/>
+	<input type="radio" id="hstripe" name="flag_pattern" value="stripe (vertical)"
+	{% if  buggy['flag_pattern']  == "hstripe" %}
+		checked
+	{% endif %}
+	>
 	<label for = "hstripe">stripe (vertical)</label><br>
 	
-	<input type="radio" id="dstripe" name="flag_pattern" value="stripe (diagonal)"/>
+	<input type="radio" id="dstripe" name="flag_pattern" value="stripe (diagonal)"
+	{% if  buggy['flag_pattern']  == "dstripe" %}
+		checked
+	{% endif %}
+	>
 	<label for = "dstripe">stripe (diagonal)</label><br>
 	
-	<input type="radio" id="checker" name="flag_pattern" value="checker"/>
+	<input type="radio" id="checker" name="flag_pattern" value="checker"
+	{% if  buggy['flag_pattern']  == "checker" %}
+		checked
+	{% endif %}
+	>
 	<label for = "checker">Checker</label><br>
 	
-	<input type="radio" id="spot" name="flag_pattern" value="spot"/>
+	<input type="radio" id="spot" name="flag_pattern" value="spot"
+	{% if  buggy['flag_pattern']  == "spot" %}
+		checked
+	{% endif %}
+	>
 	<label for = "spot">Spot</label><br>
 	<p>
 
-
-	<label for="flag_color_secondary">Flag's other colour:</label>
-    <input type="color" name="flag_color_secondary" value="#66ccff"/>
-	{% if color_err %}
-		<div id="error">{{color_err_msg}}</div>
-	{% endif %}
-	<p>
-	
-	
 	<label for="tyres">Types of tyres:</label><p>
 	
-    <input type="radio" id ="knobbly" name="tyres" value="knobbly" checked/>
+    <input type="radio" id ="knobbly" name="tyres" value="knobbly"
+	{% if buggy['tyres'] == "knobbly" %}
+		checked
+	{% endif %}
+	>
 	<label for = "knobbly">Knobbly</label><br>
 	
-	<input type="radio" id ="slick" name="tyres" value="slick"/>
+	<input type="radio" id ="slick" name="tyres" value="slick"
+	{% if buggy['tyres'] == "slick" %}
+		checked
+	{% endif %}
+	>
 	<label for = "slick">Slick</label><br>
 	
-	<input type="radio" id ="steelband" name="tyres" value="steelband"/>
+	<input type="radio" id ="steelband" name="tyres" value="steelband"
+	{% if buggy['tyres'] == "steelband" %}
+		checked
+	{% endif %}
+	>
 	<label for = "steelband">Steelband</label><br>
 	
-	<input type="radio" id ="reactive" name="tyres" value="reactive"/>
+	<input type="radio" id ="reactive" name="tyres" value="reactive"
+	{% if buggy['tyres'] == "reactive" %}
+		checked
+	{% endif %}
+	>
 	<label for = "reactive">Reactive</label><br>
 	
-	<input type="radio" id ="maglev" name="tyres" value="maglev"/>
+	<input type="radio" id ="maglev" name="tyres" value="maglev"
+	{% if buggy['tyres'] == "maglev" %}
+		checked
+	{% endif %}
+	>
 	<label for = "maglev">Maglev</label><br>
 	<p>
 	
 	<label for="qty_tyres">Number of tyres:</label>
-    <input type="text" name="qty_tyres" value="4" />
+    <input type="text" name="qty_tyres" value="{{ buggy['qty_tyres'] }}" />
 	{% if tyre_err %}
-		<div id="error">{{tyre_err_msg}}</div>
+		<div id="error">{{color_err_msg}}</div>
 	{% endif %}
 	<p>
 	
 	
 	<label for="armour">Armour type:</label><p>
 	
-    <input type="radio" id ="none" name="armour" value="none" checked/>
+    <input type="radio" id ="none" name="armour" value="none"
+	{% if buggy['armour'] == "none" %}
+		checked
+	{% endif %}
+	>
 	<label for = "none">None</label><br>
 	
-	<input type="radio" id ="wood" name="armour" value="wood"/>
+	<input type="radio" id ="wood" name="armour" value="wood"
+	{% if buggy['armour'] == "wood" %}
+		checked
+	{% endif %}
+	>
 	<label for = "wood">Wood</label><br>
 	
-	<input type="radio" id ="aluminium" name="armour" value="aluminium"/>
+	<input type="radio" id ="aluminium" name="armour" value="aluminium"
+	{% if buggy['armour'] == "aluminium" %}
+		checked
+	{% endif %}
+	>
 	<label for = "aluminium">Aluminium</label><br>
 	
-	<input type="radio" id ="thinsteel" name="armour" value="thinsteel"/>
+	<input type="radio" id ="thinsteel" name="armour" value="thinsteel"
+	{% if buggy['armour'] == "thinsteel" %}
+		checked
+	{% endif %}
+	>
 	<label for = "thinsteel">Thinsteel</label><br>
 	
-	<input type="radio" id ="thicksteel" name="armour" value="thicksteel"/>
+	<input type="radio" id ="thicksteel" name="armour" value="thicksteel"
+	{% if buggy['armour'] == "thicksteel" %}
+		checked
+	{% endif %}
+	>
 	<label for = "thicksteel">Thicksteel</label><br>
 	
-	<input type="radio" id ="titanium" name="armour" value="titanium"/>
+	<input type="radio" id ="titanium" name="armour" value="titanium"
+	{% if buggy['armour'] == "titanium" %}
+		checked
+	{% endif %}
+	>
 	<label for = "titanium">Titanium</label><br>
 	<p>
 	
 		
 	<label for="attack">Attack type:</label><p>
 	
-    <input type="radio" id ="none" name="attack" value="none" checked/>
+    <input type="radio" id ="none" name="attack" value="none"
+	{% if buggy['attack'] == "none" %}
+		checked
+	{% endif %}
+	>
 	<label for = "none">None</label><br>
 	
-	<input type="radio" id ="spike" name="attack" value="spike"/>
+	<input type="radio" id ="spike" name="attack" value="spike"
+	{% if buggy['attack'] == "spike" %}
+		checked
+	{% endif %}
+	>
 	<label for = "spike">Spike</label><br>
 	
-	<input type="radio" id ="flame" name="armour" value="flame"/>
+	<input type="radio" id ="flame" name="armour" value="flame"
+	{% if buggy['attack'] == "flame" %}
+		checked
+	{% endif %}
+	>
 	<label for = "flame">Flame</label><br>
 	
-	<input type="radio" id ="charge" name="attack" value="charge"/>
+	<input type="radio" id ="charge" name="attack" value="charge"
+	{% if buggy['attack'] == "charge" %}
+		checked
+	{% endif %}
+	>
 	<label for = "charge">Charge</label><br>
 	
-	<input type="radio" id ="biohazard" name="attack" value="biohazard"/>
+	<input type="radio" id ="biohazard" name="attack" value="biohazard"
+	{% if buggy['attack'] == "biohazard" %}
+		checked
+	{% endif %}
+	>
 	<label for = "biohazard">Biohazard</label><br>
 	<p>
 	
 	<label for="qty_attacks">Number of attacks:</label>
-    <input type="text" name="qty_attacks" value="0" />
+    <input type="text" name="qty_attacks" value="{{ buggy['qty_attacks'] }} " />
 	<p>
 	
 	<label for="fireproof">Fireproof?:</label><p>
-    <input type="radio" id ="false" name="fireproof" value="false" checked/>
+	
+    <input type="radio" id ="false" name="fireproof" value="false"
+	{% if not buggy['fireproof'] %}
+		checked
+	{% endif %}
+	>
 	<label for = "false">No</label><br>
-	<input type="radio" id ="true" name="fireproof" value="true"/>
+	<input type="radio" id ="true" name="fireproof" value="true"
+	{% if buggy['fireproof']%}
+		checked
+	{% endif %}
+	>
+	
 	<label for = "true">Yes</label><br>
 	<p>
 	
 	<label for="insulated">Insulated?:</label><p>
-    <input type="radio" id ="false" name="insulated" value="false" checked/>
+    <input type="radio" id ="false" name="insulated" value="false"
+	{% if not buggy['insulated']%}
+		checked
+	{% endif %}
+	>
 	<label for = "false">No</label><br>
-	<input type="radio" id ="true" name="insulated" value="true"/>
+	<input type="radio" id ="true" name="insulated" value="true"
+	{% if buggy['insulated'] %}
+		checked
+	{% endif %}
+	>
 	<label for = "true">Yes</label><br>
 	<p>
 	
 	<label for="antibiotic">Antibiotic?:</label><p>
-    <input type="radio" id ="false" name="antibiotic" value="false" checked/>
+    <input type="radio" id ="false" name="antibiotic" value="false"
+	{% if not buggy['antibiotic'] %}
+		checked
+	{% endif %}
+	>
 	<label for = "false">No</label><br>
-	<input type="radio" id ="true" name="antibiotic" value="true"/>
+	<input type="radio" id ="true" name="antibiotic" value="true"
+	{% if buggy['antibiotic'] %}
+		checked
+	{% endif %}
+	>
 	<label for = "true">Yes</label><br>
 	<p>
 	
 	<label for="banging">Banging sound system?:</label><p>
-    <input type="radio" id ="false" name="banging" value="false" checked/>
+    <input type="radio" id ="false" name="banging" value="false"
+	{% if not buggy['banging'] %}
+		checked
+	{% endif %}
+	>
 	<label for = "false">No</label><br>
-	<input type="radio" id ="true" name="banging" value="true"/>
+	<input type="radio" id ="true" name="banging" value="true"
+	{% if buggy['banging'] %}
+		checked
+	{% endif %}
+	>
 	<label for = "true">Yes</label><br>
 	<p>
 	
 	<label for="algo">Race computer algorithm:</label><p>
 	
-	<input type="radio" id ="defensive" name="algo" value="defensive" checked/>
+	<input type="radio" id ="defensive" name="algo" value="defensive"
+	{% if buggy['algo'] == "defensive" %}
+		checked
+	{% endif %}
+	>
 	<label for = "defensive">Defensive</label><br>
 	
-	<input type="radio" id ="steady" name="algo" value="steady"/>
+	<input type="radio" id ="steady" name="algo" value="steady"
+	{% if buggy['algo'] == "steady" %}
+		checked
+	{% endif %}
+	>
 	<label for = "steady">Steady</label><br>
 	
-	<input type="radio" id ="offensive" name="algo" value="offensive"/>
+	<input type="radio" id ="offensive" name="algo" value="offensive"
+	{% if buggy['algo'] == "offensive" %}
+		checked
+	{% endif %}
+	>
 	<label for = "offensive">Offensive</label><br>
 	
-	<input type="radio" id ="titfortat" name="algo" value="titfortat"/>
+	<input type="radio" id ="titfortat" name="algo" value="titfortat"
+	{% if buggy['algo'] == "titfortat" %}
+		checked
+	{% endif %}
+	>
 	<label for = "titfortat">Tit for tat</label><br>
 	
-	<input type="radio" id ="random" name="algo" value="random"/>
+	<input type="radio" id ="random" name="algo" value="random"
+	{% if buggy['algo'] == "random" %}
+		checked
+	{% endif %}
+	>
 	<label for = "random">Random</label><br>
 	
-	<input type="radio" id ="buggy" name="algo" value="buggy"/>
+	<input type="radio" id ="buggy" name="algo" value="buggy"
+	{% if buggy['algo'] == "buggy" %}
+		checked
+	{% endif %}
+	>
 	<label for = "buggy">Buggy</label><br>
 	<p>
 	

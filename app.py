@@ -33,11 +33,17 @@ def create_buggy():
     tyre_err_msg = "Must be equal to or greater than the number of wheels"
 
     if request.method == 'GET':
-        return render_template("buggy-form.html")
+        con = sql.connect(config.DATABASE_FILE)
+        con.row_factory = sql.Row
+        cur = con.cursor()
+        cur.execute("SELECT * FROM buggies")
+        record = cur.fetchone()
+        return render_template("buggy-form.html", buggy=record)
     elif request.method == 'POST':
         msg = ""
 
     con = sql.connect(config.DATABASE_FILE)
+
     try:
         qty_wheels = request.form['qty_wheels']
         power_type = request.form['power_type']
@@ -61,7 +67,6 @@ def create_buggy():
 
         msg = f"qty_wheels={qty_wheels}"
 
-        # with sql.connect(config.DATABASE_FILE) as con:
         qty_wheels_int = int(request.form['qty_wheels'])
         qty_tyres_int = int(request.form['qty_tyres'])
         primary = str(request.form['flag_color_primary'])

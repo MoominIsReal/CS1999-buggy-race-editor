@@ -21,30 +21,29 @@ print("- Opened database successfully in file \"{}\"".format(Config.DATABASE_FIL
 
 # using Python's triple-quote for multi-line strings:
 
-con.execute("DROP TABLE buggies")
 con.execute("""
 
-  CREATE TABLE buggies (
+  CREATE TABLE IF NOT EXISTS buggies (
     id                    INTEGER PRIMARY KEY AUTOINCREMENT,
     qty_wheels            INTEGER DEFAULT 4,
-    power_type            VARCHAR(20),
+    power_type            VARCHAR(20) DEFAULT "petrol",
     power_units           INTEGER DEFAULT 1,
-    aux_power_type        VARCHAR(20),
+    aux_power_type        VARCHAR(20) DEFAULT "none",
     aux_power_units       INTEGER DEFAULT 0,
     hamster_booster       INTEGER DEFAULT 0,
-    flag_color_primary    VARCHAR(20),
-    flag_color_secondary  VARCHAR(20),
-    flag_pattern          VARCHAR(20),
-    tyres                 VARCHAR(20),
-    qty_tyres             INTEGER DEFAULT 0,
-    armour                VARCHAR(20),
-    attack                VARCHAR(20),
+    flag_color_primary    VARCHAR(20) DEFAULT "#ffffff",
+    flag_color_secondary  VARCHAR(20) DEFAULT "#000000",
+    flag_pattern          VARCHAR(20) DEFAULT "plain",
+    tyres                 VARCHAR(20) DEFAULT "knobbly",
+    qty_tyres             INTEGER DEFAULT 4,
+    armour                VARCHAR(20) DEFAULT "none",
+    attack                VARCHAR(20) DEFAULT "none",
     qty_attacks           INTEGER DEFAULT 0,
-    fireproof             BOOLEAN,
-    insulated             BOOLEAN,
-    antibiotic            BOOLEAN,
-    banging               BOOLEAN,
-    algo                  VARCHAR(20)
+    fireproof             BOOLEAN DEFAULT false,
+    insulated             BOOLEAN DEFAULT false,
+    antibiotic            BOOLEAN DEFAULT false,
+    banging               BOOLEAN DEFAULT false,
+    algo                  VARCHAR(20) DEFAULT "steady"
   )
 
 """)
